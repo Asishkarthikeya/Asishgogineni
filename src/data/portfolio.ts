@@ -41,6 +41,7 @@ export const education: TimelineEntry[] = [
     location: 'Atlanta, GA',
     description: 'GPA: 3.86/4.0 — Focus: ML, Deep Learning, NLP',
     tags: ['Python', 'SQL', 'Machine Learning', 'Deep Learning', 'NLP'],
+    logo: asset('/images/gsu.png'),
   },
   {
     period: 'Aug 2020 — April 2024',
@@ -49,6 +50,7 @@ export const education: TimelineEntry[] = [
     location: 'India',
     description: 'Computer Science & Engineering — Gold Medalist',
     tags: ['Data Structures', 'Big Data', 'Information Retrieval', 'Data Mining'],
+    logo: asset('/images/SRM.jpeg'),
   },
 ];
 
