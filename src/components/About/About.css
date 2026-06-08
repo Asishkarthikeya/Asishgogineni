@@ -1,0 +1,445 @@
+.about-section {
+  padding: var(--space-20) 0;
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .about-section {
+    padding: var(--space-28) 0;
+  }
+}
+
+.about-header {
+  margin-bottom: var(--space-12);
+}
+
+/* ── Bento Grid Layout ── */
+.about-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+
+/* ── Card Baselines & Spotlight ── */
+.bento-card {
+  position: relative;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.bento-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md), var(--glow-primary);
+  transform: translateY(-2px);
+}
+
+/* Mouse spotlight glow radial gradient */
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(109, 92, 255, 0.08),
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+[data-theme="light"] .bento-card::before {
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(92, 76, 255, 0.08),
+    transparent 80%
+  );
+}
+
+/* Card inner content spacer */
+.bento-card-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-8);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card Header Icon & Tag Row */
+.card-header-icon-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.card-icon {
+  color: var(--text-secondary);
+}
+
+.accent-glow {
+  color: var(--accent);
+}
+
+.primary-glow {
+  color: var(--primary);
+}
+
+.secondary-glow {
+  color: var(--secondary);
+}
+
+.card-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-tertiary);
+}
+
+/* Card Typographies */
+.card-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.card-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--space-4);
+}
+
+/* Grid Column Spanning */
+@media (max-width: 1023px) {
+  .bento-bio,
+  .bento-interests,
+  .bento-milestones,
+  .bento-stats-card,
+  .bento-quote-card {
+    grid-column: span 12;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-bio {
+    grid-column: span 7;
+  }
+  .bento-interests {
+    grid-column: span 5;
+  }
+  .bento-milestones {
+    grid-column: span 5;
+  }
+  .bento-stats-card {
+    grid-column: span 7;
+  }
+  .bento-quote-card {
+    grid-column: span 12;
+  }
+}
+
+/* ── Card 1: Bio Narrative Styling ── */
+.bento-bio {
+  min-height: 340px;
+}
+
+.bio-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  color: var(--text-secondary);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.bio-footer {
+  margin-top: auto;
+  padding-top: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+
+.monogram {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: var(--tracking-widest);
+}
+
+.signature-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-tertiary);
+}
+
+/* ── Card 2: Research Tags Styling ── */
+.bento-interests {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.bento-interest-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.45rem 0.8rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  transition: all var(--transition-base);
+}
+
+.bento-interest-tag:hover {
+  background: rgba(109, 92, 255, 0.05);
+  border-color: var(--primary);
+  color: var(--text-primary);
+  transform: scale(1.03);
+}
+
+.tag-inner-icon {
+  color: var(--primary);
+  opacity: 0.7;
+}
+
+/* ── Card 3: Milestones Timeline ── */
+.bento-milestone-list {
+  list-style: none;
+  padding: 0;
+  margin: auto 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bento-milestone-list li {
+  display: flex;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.bento-milestone-list li::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  bottom: -20px;
+  width: 1px;
+  background: var(--border);
+}
+
+.bento-milestone-list li:last-child::after {
+  display: none;
+}
+
+.milestone-time {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--secondary);
+  background: rgba(0, 229, 160, 0.08);
+  border: 1px solid rgba(0, 229, 160, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  height: fit-content;
+  text-align: center;
+  min-width: 46px;
+}
+
+.milestone-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.milestone-text strong {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.milestone-text span {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ── Card 4: Stats Grid Styling ── */
+.bento-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: auto;
+}
+
+.bento-stat-item {
+  position: relative;
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.bento-stat-item:hover {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.stat-glow-radial {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, rgba(109, 92, 255, 0.04) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.bento-stat-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  position: relative;
+  z-index: 2;
+}
+
+.stat-plus {
+  color: var(--accent);
+  font-size: 0.85em;
+  margin-left: 1px;
+}
+
+.bento-stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+  position: relative;
+  z-index: 2;
+  font-weight: 500;
+}
+
+/* ── Card 5: Quote / Philosophy Styling ── */
+.bento-quote-card {
+  background: linear-gradient(135deg, var(--bg-glass) 0%, rgba(109, 92, 255, 0.03) 100%);
+}
+
+.quote-layout {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-10) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.quote-left-icon {
+  color: var(--accent);
+  opacity: 0.15;
+  margin-bottom: var(--space-4);
+}
+
+.quote-body {
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.philosophy-quote-text {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+@media (min-width: 640px) {
+  .philosophy-quote-text {
+    font-size: var(--text-2xl);
+  }
+}
+
+.quote-author-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.author-bar {
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+}
+
+.author-desc {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  letter-spacing: var(--tracking-widest);
+}
+
+/* ── Light Theme Adjustments ── */
+[data-theme="light"] .bento-stat-item {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+[data-theme="light"] .bento-stat-item:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .stat-glow-radial {
+  background: radial-gradient(circle, rgba(92, 76, 255, 0.06) 0%, transparent 70%);
+}

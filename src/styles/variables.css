@@ -1,0 +1,132 @@
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — Cinematic Dark Theme (Glassmorphism)
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Background Colors ── */
+  --bg: #06070a;
+  --bg-white: #0a0b10;
+  --bg-subtle: rgba(255, 255, 255, 0.02);
+  --bg-glass: rgba(10, 11, 16, 0.6);
+  --bg-glass-hover: rgba(255, 255, 255, 0.05);
+  --navbar-bg: rgba(10, 11, 16, 0.85);
+
+  /* ── Borders ── */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --border-glow: rgba(109, 92, 255, 0.3);
+
+  /* ── Text Colors ── */
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-muted: #475569;
+
+  /* ── Accents & Brands (Cyberpunk/Cinematic) ── */
+  --primary: #6d5cff;
+  --secondary: #00e5a0;
+  --accent: #ffb347;
+  --accent-light: rgba(109, 92, 255, 0.1);
+  --success: #00e5a0;
+  
+  /* ── Typography ── */
+  --font-body: 'EB Garamond', Garamond, Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
+  --font-display: 'EB Garamond', Garamond, Georgia, serif;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-widest: 0.1em;
+
+  /* ── Spacing ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+
+  /* ── Border Radius ── */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ── Shadows (Neon/Glow) ── */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --glow-primary: 0 0 20px rgba(109, 92, 255, 0.3);
+  --glow-accent: 0 0 20px rgba(255, 179, 71, 0.3);
+
+  /* ── Transitions ── */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease-in-out;
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-Index ── */
+  --z-base: 0;
+  --z-above: 10;
+  --z-nav: 50;
+  --z-modal: 100;
+
+  /* ── Container ── */
+  --container-max: 1152px;
+  --container-padding: 1.5rem;
+}
+
+[data-theme="light"] {
+  /* ── Background Colors ── */
+  --bg: #f8fafc;
+  --bg-white: #ffffff;
+  --bg-subtle: rgba(0, 0, 0, 0.02);
+  --bg-glass: rgba(255, 255, 255, 0.6);
+  --bg-glass-hover: rgba(0, 0, 0, 0.03);
+  --navbar-bg: rgba(255, 255, 255, 0.85);
+
+  /* ── Borders ── */
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+  --border-glow: rgba(109, 92, 255, 0.15);
+
+  /* ── Text Colors ── */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
+
+  /* ── Accents & Brands ── */
+  --primary: #5c4cff;
+  --secondary: #00b37e;
+  --accent: #e69512;
+  --accent-light: rgba(92, 76, 255, 0.08);
+  --success: #00b37e;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
+  --glow-primary: 0 0 20px rgba(92, 76, 255, 0.15);
+  --glow-accent: 0 0 20px rgba(230, 149, 18, 0.15);
+}
