@@ -9,7 +9,6 @@ import Experience from './components/Experience/Experience';
 import Projects from './components/Projects/Projects';
 import Publications from './components/Publications/Publications';
 import Contact from './components/Contact/Contact';
-import FloatingRobot from './components/FloatingRobot/FloatingRobot';
 
 function Portfolio() {
   return (
@@ -51,7 +50,6 @@ function App() {
   return (
     <div className="app">
       <Navigation />
-      <FloatingRobot />
       <main>
         <Routes>
           <Route path="/" element={<Portfolio />} />
