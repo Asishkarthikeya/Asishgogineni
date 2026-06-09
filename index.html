@@ -1,23 +1,867 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/AVATAR.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Asish Karthikeya Gogineni — Data Scientist, ML Engineer & AI Researcher. Transforming data into intelligence and ideas into impact." />
-    <meta name="keywords" content="Asish Karthikeya Gogineni, Data Scientist, Machine Learning, AI, NLP, Portfolio" />
-    <meta name="author" content="Asish Karthikeya Gogineni" />
-    <meta property="og:title" content="Asish Karthikeya Gogineni — Portfolio" />
-    <meta property="og:description" content="Data Scientist | ML Engineer | AI Researcher. Building the future with AI, responsibly and boldly." />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#06070a" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <title>Asish Karthikeya Gogineni — Portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pranav Chowdary | AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0f0e17;
+  --surface:#1a1825;
+  --primary:#6366f1;
+  --secondary:#ec4899;
+  --accent:#f59e0b;
+  --success:#10b981;
+  --text:#ffffff;
+  --muted:#94a3b8;
+  --glass:rgba(255,255,255,0.05);
+  --border:rgba(255,255,255,0.1);
+  --glow:rgba(99,102,241,0.5);
+  --glow-pink:rgba(236,72,153,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'EB Garamond',Georgia,serif;overflow-x:hidden;line-height:1.7;}
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:#1a1825;}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#6366f1 0%,#ec4899 100%);border-radius:10px;}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#818cf8 0%,#f472b6 100%);}
+.blob{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
+.blob-1{width:520px;height:520px;background:rgba(99,102,241,0.18);top:15%;left:-18%;animation:blobFloat1 20s ease-in-out infinite;}
+.blob-2{width:520px;height:520px;background:rgba(236,72,153,0.14);bottom:15%;right:-18%;animation:blobFloat2 25s ease-in-out infinite;}
+@keyframes blobFloat1{0%,100%{transform:scale(1) rotate(0deg);}33%{transform:scale(1.2) rotate(90deg);}66%{transform:scale(0.9) rotate(180deg);}}
+@keyframes blobFloat2{0%,100%{transform:scale(1) rotate(0deg);}33%{transform:scale(1.3) rotate(-90deg);}66%{transform:scale(1.1) rotate(-180deg);}}
+#progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--secondary));z-index:1000;width:0%;transition:width .1s;}
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.55;}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1.1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;transition:all .3s;}
+nav.scrolled{background:rgba(15,14,23,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-size:1.3rem;font-weight:700;color:var(--primary);letter-spacing:1px;font-family:'JetBrains Mono',monospace;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s;font-family:'JetBrains Mono',monospace;}
+.nav-links a:hover,.nav-links a.active{color:var(--primary);}
+.glass-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:1.25rem;}
+.gradient-text{background:linear-gradient(135deg,#6366f1,#ec4899,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;padding:0 2rem;text-align:center;}
+.avatar-wrap{
+  width:180px;height:180px;border-radius:50%;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  font-size:4rem;font-weight:700;
+  background:linear-gradient(135deg,rgba(99,102,241,.3),rgba(236,72,153,.25));
+  border:3px solid rgba(255,255,255,.12);
+  margin-bottom:2rem;
+  animation:springEntrance .9s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.avatar-wrap::before{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  background:conic-gradient(#6366f1,#ec4899,#f59e0b,#6366f1);
+  z-index:-1;animation:spinGlow 4s linear infinite;opacity:.6;filter:blur(6px);
+}
+.avatar-wrap::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(236,72,153,.15));
+  animation:avatarPulse 3s ease-in-out infinite;
+}
+@keyframes springEntrance{0%{transform:scale(0) rotate(-180deg);opacity:0;}60%{transform:scale(1.12) rotate(10deg);opacity:1;}80%{transform:scale(0.94) rotate(-5deg);}100%{transform:scale(1) rotate(0deg);}}
+@keyframes spinGlow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes avatarPulse{0%,100%{box-shadow:0 0 40px rgba(99,102,241,.4),0 0 80px rgba(236,72,153,.15);}50%{box-shadow:0 0 60px rgba(99,102,241,.6),0 0 120px rgba(236,72,153,.25);}}
+.typed-cursor{animation:blink .7s step-end infinite;color:var(--primary);}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.scroll-down{display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;animation:fadeIn 2s ease 1.5s both;}
+.scroll-chevron{width:24px;height:24px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);animation:scrollBounce 1.5s ease-in-out infinite;}
+@keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(8px);}}
+.shape-float{position:fixed;pointer-events:none;z-index:0;animation:shapeFloat 4s ease-in-out infinite;}
+@keyframes shapeFloat{0%,100%{transform:translateY(0) rotate(0deg);opacity:.65;}50%{transform:translateY(-14px) rotate(20deg);opacity:1;}}
+@keyframes shapeFloat2{0%,100%{transform:translateY(0) rotate(0deg);opacity:.65;}50%{transform:translateY(-14px) rotate(-20deg);opacity:1;}}
+section{position:relative;z-index:1;padding:6rem 2rem;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-badge{display:inline-block;background:rgba(99,102,241,0.12);color:var(--primary);border:1px solid rgba(99,102,241,.25);border-radius:999px;padding:.3rem 1rem;font-size:.82rem;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;}
+.section-title{font-size:clamp(2rem,4.5vw,3rem);font-weight:800;margin-bottom:1rem;}
+.section-sub{color:var(--muted);font-size:1.05rem;max-width:600px;margin-bottom:3rem;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;}}
+.about-text{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:.97rem;}
+.about-text span{color:var(--text);font-weight:600;}
+.stats-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2rem;}
+.stat-box{background:var(--glass);border:1px solid var(--border);border-radius:1rem;padding:1.2rem 1.5rem;text-align:center;min-width:90px;backdrop-filter:blur(12px);}
+.stat-num{font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-label{font-size:.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:.2rem;}
+.tech-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}
+.tech-pill{padding:.3rem .85rem;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,.2);border-radius:999px;font-size:.8rem;color:var(--primary);font-family:'JetBrains Mono',monospace;}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+@media(max-width:900px){.exp-grid{grid-template-columns:1fr;}}
+.exp-col-title{display:flex;align-items:center;gap:.75rem;margin-bottom:2rem;}
+.exp-col-icon{padding:.75rem;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:.75rem;display:flex;align-items:center;justify-content:center;}
+.exp-col-icon.edu{background:linear-gradient(135deg,var(--secondary),var(--accent));}
+.timeline-item{position:relative;padding-left:2rem;padding-bottom:3rem;}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-line{position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--primary),var(--secondary));}
+.timeline-dot{position:absolute;left:0;top:.5rem;width:16px;height:16px;transform:translateX(-7px);border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));box-shadow:0 0 12px var(--glow);}
+.timeline-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:1rem;padding:1.5rem;transition:transform .3s,box-shadow .3s;}
+.timeline-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3);}
+.timeline-title{font-size:1.1rem;font-weight:700;margin-bottom:.3rem;}
+.timeline-company{color:var(--primary);font-weight:600;margin-bottom:.75rem;font-size:.95rem;}
+.timeline-period{display:inline-block;padding:.25rem .85rem;background:rgba(99,102,241,0.15);color:var(--primary);border-radius:999px;font-size:.78rem;font-family:'JetBrains Mono',monospace;margin-bottom:1rem;}
+.timeline-points{list-style:none;}
+.timeline-points li{display:flex;align-items:flex-start;gap:.5rem;color:var(--muted);font-size:.9rem;margin-bottom:.5rem;}
+.timeline-points li::before{content:'▸';color:var(--primary);flex-shrink:0;margin-top:.1rem;}
+.timeline-location{font-size:.82rem;color:var(--muted);margin-top:.75rem;}
+.filter-tabs{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem;}
+.filter-tab{padding:.55rem 1.4rem;border-radius:999px;font-size:.88rem;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--glass);color:var(--muted);transition:all .25s;font-family:'EB Garamond',serif;backdrop-filter:blur(12px);}
+.filter-tab:hover{color:var(--text);}
+.filter-tab.active{background:linear-gradient(135deg,var(--primary),var(--secondary));border-color:transparent;color:#fff;box-shadow:0 0 20px var(--glow);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2rem;}
+.project-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:1.5rem;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:default;}
+.project-card:hover{transform:translateY(-10px);box-shadow:0 30px 60px rgba(0,0,0,.4),0 0 40px rgba(99,102,241,.15);border-color:rgba(99,102,241,.3);}
+.proj-img{position:relative;overflow:hidden;height:180px;}
+.proj-img-inner{width:100%;height:100%;background:linear-gradient(135deg,rgba(99,102,241,.3),rgba(236,72,153,.2));display:flex;align-items:center;justify-content:center;font-size:3.5rem;transition:transform .5s;}
+.project-card:hover .proj-img-inner{transform:scale(1.08);}
+.proj-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,14,23,.8),transparent);opacity:0;transition:opacity .3s;}
+.project-card:hover .proj-img-overlay{opacity:1;}
+.proj-cat-badge{position:absolute;top:.75rem;left:.75rem;padding:.2rem .7rem;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-radius:999px;font-size:.72rem;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.proj-body{padding:1.5rem;display:flex;flex-direction:column;flex:1;}
+.proj-title{font-size:1.2rem;font-weight:700;margin-bottom:.5rem;transition:color .3s;color:var(--text);}
+.project-card:hover .proj-title{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.proj-desc{color:var(--muted);font-size:.9rem;margin-bottom:1rem;line-height:1.7;}
+.proj-bullets{list-style:none;margin-bottom:1rem;}
+.proj-bullets li{display:flex;align-items:flex-start;gap:.4rem;color:var(--muted);font-size:.87rem;margin-bottom:.4rem;}
+.proj-bullets li::before{content:'▸';color:var(--primary);flex-shrink:0;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem;margin-top:auto;}
+.proj-tag{padding:.2rem .7rem;background:rgba(99,102,241,0.15);color:var(--primary);border-radius:999px;font-size:.75rem;font-weight:600;font-family:'JetBrains Mono',monospace;}
+.proj-links-row{display:flex;gap:1rem;padding-top:.75rem;border-top:1px solid var(--border);}
+.proj-link-btn{display:flex;align-items:center;gap:.35rem;color:var(--muted);font-size:.88rem;text-decoration:none;transition:color .2s;}
+.proj-link-btn:hover{color:var(--primary);}
+.proj-link-btn svg{flex-shrink:0;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;}
+.skill-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:1.25rem;padding:1.75rem;transition:transform .3s,box-shadow .3s,border-color .3s;}
+.skill-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.3);border-color:rgba(99,102,241,.3);}
+.skill-icon{font-size:1.8rem;margin-bottom:.75rem;}
+.skill-name{font-size:1rem;font-weight:700;margin-bottom:.75rem;font-family:'JetBrains Mono',monospace;color:var(--primary);}
+.skill-items{display:flex;flex-direction:column;gap:.3rem;}
+.skill-item{display:flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.88rem;}
+.skill-dot{width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));flex-shrink:0;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;}}
+.contact-links{display:flex;flex-direction:column;gap:1rem;}
+.contact-link{display:flex;align-items:center;gap:.75rem;color:var(--muted);text-decoration:none;padding:.75rem 1rem;background:var(--glass);border:1px solid var(--border);border-radius:.75rem;transition:all .25s;}
+.contact-link:hover{color:var(--primary);border-color:rgba(99,102,241,.4);transform:translateX(4px);}
+.contact-form{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:1.5rem;padding:2rem;}
+.form-group{margin-bottom:1.25rem;}
+.form-group label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:.4rem;font-family:'JetBrains Mono',monospace;}
+.form-group input,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:.6rem;padding:.75rem 1rem;color:var(--text);font-size:.95rem;font-family:'EB Garamond',serif;transition:border-color .25s,box-shadow .25s;outline:none;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.15);}
+.form-group textarea{resize:vertical;min-height:110px;}
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);position:relative;z-index:1;}
+footer span{color:var(--primary);}
+#back-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:rgba(99,102,241,.2);border:1px solid var(--primary);color:var(--primary);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;opacity:0;transition:opacity .3s,transform .3s;font-size:1.2rem;}
+#back-top.visible{opacity:1;}
+#back-top:hover{transform:scale(1.1);background:rgba(99,102,241,.35);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.social-btn{width:48px;height:48px;border-radius:50%;background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;transition:transform .3s,box-shadow .3s,color .3s,border-color .3s;}
+.social-btn:hover{transform:scale(1.1) rotate(5deg);color:var(--primary);border-color:var(--primary);box-shadow:0 0 20px var(--glow);}
+.btn-primary{display:inline-block;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border:none;border-radius:999px;font-size:1rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .3s;font-family:'EB Garamond',serif;}
+.btn-primary:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 0 30px var(--glow),0 0 60px var(--glow-pink);}
+@media(max-width:768px){
+  nav{padding:.9rem 1.5rem;}
+  .nav-links{gap:1rem;}
+  .nav-links a{font-size:.8rem;}
+  section{padding:4rem 1.2rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<canvas id="bg-canvas"></canvas>
+
+<!-- Floating shapes -->
+<div class="shape-float" style="position:fixed;top:18%;left:12%;animation-delay:0s;"><svg width="22" height="19" viewBox="0 0 24 21" fill="none"><polygon points="12,2 22,19 2,19" stroke="#f43f5e" stroke-width="2.5"/></svg></div>
+<div class="shape-float" style="position:fixed;top:14%;left:55%;animation-delay:1.2s;"><svg width="19" height="16" viewBox="0 0 24 21" fill="none"><polygon points="12,2 22,19 2,19" stroke="#eab308" stroke-width="2.5"/></svg></div>
+<div class="shape-float" style="position:fixed;top:12%;left:80%;animation-delay:0.5s;"><svg width="17" height="14" viewBox="0 0 24 21" fill="none"><polygon points="12,2 22,19 2,19" stroke="#6366f1" stroke-width="2.5"/></svg></div>
+<div class="shape-float" style="position:fixed;top:35%;left:88%;animation-delay:0.8s;animation-name:shapeFloat2;"><svg width="26" height="16" viewBox="0 0 30 18" fill="none"><path d="M2 16 Q15 2 28 16" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+<div class="shape-float" style="position:fixed;top:62%;left:8%;animation-delay:1.5s;animation-name:shapeFloat2;"><svg width="24" height="14" viewBox="0 0 30 18" fill="none"><path d="M2 16 Q15 2 28 16" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+<div class="shape-float" style="position:fixed;top:72%;left:52%;animation-delay:0.3s;animation-name:shapeFloat2;"><svg width="22" height="12" viewBox="0 0 30 18" fill="none"><path d="M2 16 Q15 2 28 16" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+<div class="shape-float" style="position:fixed;top:55%;left:82%;animation-delay:1.0s;"><svg width="8" height="24" viewBox="0 0 8 24" fill="none"><line x1="4" y1="2" x2="4" y2="22" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+<div class="shape-float" style="position:fixed;top:88%;left:88%;animation-delay:1.4s;animation-name:shapeFloat2;"><svg width="26" height="16" viewBox="0 0 30 18" fill="none"><path d="M2 16 Q15 2 28 16" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+<div class="shape-float" style="position:fixed;top:48%;left:4%;animation-delay:2.0s;"><svg width="17" height="14" viewBox="0 0 24 21" fill="none"><polygon points="12,2 22,19 2,19" stroke="#6366f1" stroke-width="2.5"/></svg></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">PN</div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="section-inner" style="max-width:900px;">
+    <div class="reveal" style="margin-bottom:2rem;">
+      <div class="avatar-wrap" style="width:240px;height:240px;font-size:0;margin:0 auto;">
+        <img src="pranav.jpg" alt="Pranav Chowdary" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;object-position:center top;"/>
+      </div>
+    </div>
+
+    <h1 style="font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;margin-bottom:1rem;animation:fadeUp .7s ease .2s both;">
+      Pranav <span style="background:linear-gradient(135deg,#6366f1,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Chowdary</span>
+    </h1>
+
+    <div style="font-size:1.4rem;color:var(--primary);margin-bottom:2rem;height:3rem;animation:fadeUp .7s ease .4s both;font-weight:600;">
+      I'm a <span id="typed-text"></span><span class="typed-cursor">|</span>
+    </div>
+
+    <p style="color:var(--muted);font-size:1.05rem;line-height:1.9;max-width:700px;margin:0 auto 2.5rem;animation:fadeUp .7s ease .6s both;">
+      AI/ML Engineer specializing in LLMs, RAG systems, and agentic pipelines — building GenAI applications, intelligent data systems, and production AI solutions that drive real-world impact.
+    </p>
+
+    <div style="display:flex;gap:1.2rem;margin-bottom:3rem;animation:fadeUp .7s ease .8s both;justify-content:center;">
+      <a href="https://github.com/PranavNagothu" target="_blank" class="social-btn" style="width:54px;height:54px;border-radius:.75rem;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/pranavnagothu" target="_blank" class="social-btn" style="width:54px;height:54px;border-radius:.75rem;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="mailto:pranavchowdary19@gmail.com" class="social-btn" style="width:54px;height:54px;border-radius:.75rem;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+      </a>
+    </div>
+
+    <div class="scroll-down" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+      <span>Scroll Down</span>
+      <div class="scroll-chevron"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <span class="section-badge">✦ About Me</span>
+        <h2 class="section-title">Building Intelligent <span class="gradient-text">AI Systems</span></h2>
+        <p class="about-text">Hi, I'm Pranav — an <span>AI/ML Engineer</span> specializing in LLMs, RAG pipelines, and agentic systems. I build production GenAI applications that automate complex workflows and deliver accurate, context-aware intelligence at scale.</p>
+        <p class="about-text">Currently pursuing my <span>Master's in Computer Science at Georgia State University</span> (GPA: 3.96/4.0) and working as a <span>Graduate Research Assistant</span>, where I build multi-modal AI systems and clinical knowledge retrieval pipelines.</p>
+        <p class="about-text">At <span>Amazon</span>, I deployed LexiScan — a production RAG system on AWS Bedrock + OpenSearch — and built an LLM-as-judge verification layer that caught hallucinations pre-delivery, achieving <span>~10x faster documentation access</span>.</p>
+        <div class="tech-pills">
+          <span class="tech-pill">Python</span><span class="tech-pill">LangChain</span><span class="tech-pill">LangGraph</span>
+          <span class="tech-pill">PyTorch</span><span class="tech-pill">RAG</span><span class="tech-pill">AWS Bedrock</span>
+          <span class="tech-pill">Azure AI</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Docker</span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-num" data-target="8">0</div><div class="stat-label">Projects</div></div>
+          <div class="stat-box"><div class="stat-num">3.96/4.0</div><div class="stat-label">GPA Score</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="3">0</div><div class="stat-label">Roles</div></div>
+        </div>
+        <div class="glass-card" style="padding:1.75rem;margin-top:1.5rem;">
+          <div style="font-size:.85rem;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:1rem;">// quick facts</div>
+          <div style="display:flex;flex-direction:column;gap:.6rem;">
+            <div style="font-size:.92rem;"><span style="color:var(--primary);">📍</span> Atlanta, GA</div>
+            <div style="font-size:.92rem;"><span style="color:var(--primary);">🎓</span> MS CS — Georgia State University (3.96 GPA)</div>
+            <div style="font-size:.92rem;"><span style="color:var(--primary);">🏢</span> Amazon AI Intern + GSU Research</div>
+            <div style="font-size:.92rem;"><span style="color:var(--primary);">⚡</span> Open to AI/ML & SDE full-time roles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:linear-gradient(180deg,transparent,rgba(26,24,37,0.5),transparent);">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <span class="section-badge">✦ Journey</span>
+      <h2 class="section-title">My <span class="gradient-text">Experience</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Research, industry, and everything in between</p>
+    </div>
+
+    <div class="exp-grid">
+      <!-- Work Experience -->
+      <div>
+        <div class="exp-col-title reveal">
+          <div class="exp-col-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <h3 style="font-size:1.4rem;font-weight:700;">Work Experience</h3>
+        </div>
+
+        <!-- GSU Research Assistant -->
+        <div class="timeline-item reveal">
+          <div class="timeline-line"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-title">Graduate Research Assistant</div>
+            <div class="timeline-company">Georgia State University</div>
+            <div class="timeline-period">Aug 2024 – Present</div>
+            <ul class="timeline-points">
+              <li>Designed a longitudinal multi-modal report-generation system unifying temporal–modality factorization with latent diffusion and MoE fusion, improving diagnostic reporting reliability across patient timelines</li>
+              <li>Built image-classification models in TensorFlow/Keras to diagnose retinopathy, breast cancer, and colon cancer from medical images, reducing false negatives 5–7%</li>
+              <li>Implemented a RAG-based system combining document retrieval and an LLM to deliver accurate, context-aware responses to student health policy queries across 200+ common scenarios</li>
+              <li>Engineered a vector-embedding-based clinical knowledge retrieval system using sentence transformers and a managed vector store, powering generative responses across 1,000+ student-health records</li>
+            </ul>
+            <div class="timeline-location">📍 Atlanta, GA</div>
+          </div>
+        </div>
+
+        <!-- Amazon AI Intern -->
+        <div class="timeline-item reveal">
+          <div class="timeline-line"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-title">Software Development Engineer Intern — AI</div>
+            <div class="timeline-company">Amazon</div>
+            <div class="timeline-period">May 2025 – August 2025</div>
+            <ul class="timeline-points">
+              <li>Deployed LexiScan, a production RAG system on AWS (Bedrock, OpenSearch Service, Textract), embedding thousands of documents into a vector database and serving it as a conversational agent via Microsoft Teams for ~10x faster documentation access</li>
+              <li>Tuned LexiScan's retrieval quality through chunking-strategy and embedding-model experiments, improving answer relevance by 30% and reducing irrelevant context passed to the LLM</li>
+              <li>Built an LLM-as-judge verification layer that caught hallucinations pre-delivery, flagging 28% of low-confidence responses for a repeatable quality loop</li>
+              <li>Prototyped an agentic NLQ-to-SQL capability with a query-routing agent over multiple schemas, paired with an automated evaluation suite to extend self-service analytics to non-technical teams</li>
+            </ul>
+            <div class="timeline-location">📍 Seattle, WA</div>
+          </div>
+        </div>
+
+        <!-- Amazon SDS Associate -->
+        <div class="timeline-item reveal">
+          <div class="timeline-line"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-title">SDS Associate</div>
+            <div class="timeline-company">Amazon</div>
+            <div class="timeline-period">Aug 2023 – Nov 2023</div>
+            <ul class="timeline-points">
+              <li>Architected Argus, an automated diagnostic application that translated investigation requests into validated parameters, ran a multi-step diagnostic workflow, and generated root-cause explanations — cutting investigation time by ~70%</li>
+              <li>Engineered the diagnostic engine to invoke internal tools (real-time shipment/route replay via Lambda) and interpret 50+ delivery-stage telemetry signals per order, translating raw tracking data into analyst-ready explanations</li>
+              <li>Built a structured-input interface that let customer service associates run diagnostics self-service, removing dependency on engineers and eliminating manual telemetry analysis</li>
+              <li>Productionized on AWS (Lambda, DynamoDB, CDK), reducing manual investigation time across the support team by ~8 hours per week</li>
+            </ul>
+            <div class="timeline-location">📍 Hyderabad, India</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <div class="exp-col-title reveal">
+          <div class="exp-col-icon edu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 style="font-size:1.4rem;font-weight:700;">Education</h3>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-line"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-title">Master of Science in Computer Science</div>
+            <div class="timeline-company">Georgia State University</div>
+            <div class="timeline-period">Aug 2024 – Dec 2026</div>
+            <ul class="timeline-points">
+              <li>GPA: 3.96 / 4.0</li>
+              <li>Machine Learning, Artificial Intelligence, LLMs, Natural Language Processing</li>
+              <li>Deep Learning, Database Systems</li>
+            </ul>
+            <div class="timeline-location">📍 Atlanta, GA</div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-line"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-title">Bachelor of Technology — Information Technology</div>
+            <div class="timeline-company">BV Raju Institute of Technology</div>
+            <div class="timeline-period">Aug 2020 – May 2024</div>
+            <ul class="timeline-points">
+              <li>Information Technology</li>
+              <li>Data Structures, Algorithms, Operating Systems, Networks</li>
+            </ul>
+            <div class="timeline-location">📍 Hyderabad, India</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:2rem;">
+      <span class="section-badge">✦ Portfolio</span>
+      <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+      <p class="section-sub" style="margin:0 auto 1.5rem;">GenAI and agentic systems built for real-world impact</p>
+    </div>
+
+    <div class="filter-tabs reveal" id="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All Projects</button>
+      <button class="filter-tab" data-filter="agentic">Agentic</button>
+      <button class="filter-tab" data-filter="rag">RAG</button>
+      <button class="filter-tab" data-filter="devtools">DevTools</button>
+      <button class="filter-tab" data-filter="cloud">Cloud</button>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- ContactPulse -->
+      <div class="project-card reveal" data-tags="agentic rag cloud">
+        <div class="proj-img">
+          <div class="proj-img-inner" style="background:linear-gradient(135deg,rgba(99,102,241,.3),rgba(16,185,129,.2));">🎯</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge">Agentic · Cloud · RAG</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">ContactPulse</div>
+          <p class="proj-desc">GCP-native CX agent evaluation platform — voice/chat multi-agent assistant with hybrid retrieval and an LLM-as-judge verifier rejecting ungrounded responses.</p>
+          <ul class="proj-bullets">
+            <li>Voice/chat multi-agent assistant (order-status, product/policy Q&A, service-request) with hybrid retrieval and a quote-grounded LLM-as-judge verifier rejecting ungrounded responses</li>
+            <li>Evaluation harness measuring containment, refusal precision, task success, hallucination rate, and cost-per-call (~$0.0014/turn)</li>
+            <li>Error-analysis notebook clustering failure modes with a business readout quantifying avoided handle-time</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">Vertex AI ADK</span><span class="proj-tag">Gemini 2.5</span><span class="proj-tag">BigQuery</span><span class="proj-tag">Vertex AI Search</span><span class="proj-tag">Cloud Run</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/ContactPulse" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://contactpulse.vercel.app/" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AIDA -->
+      <div class="project-card reveal" data-tags="agentic rag">
+        <div class="proj-img">
+          <div class="proj-img-inner" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(99,102,241,.2));">📊</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge" style="background:linear-gradient(135deg,var(--accent),var(--primary));">Agentic · Data</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">AIDA — AI Powered Data Analyzer</div>
+          <p class="proj-desc">AI-powered analytics platform using Llama 3 + Groq that automates dataset profiling, statistical analysis, and insight generation — cutting manual analysis time by 90%.</p>
+          <ul class="proj-bullets">
+            <li>Multi-agent workflow automating dataset profiling, statistical analysis, and insight generation through a stateful LangGraph graph with TypedDict-based state management across 6 sequential agents</li>
+            <li>Implements graceful error handling and fallback logic at each node to ensure uninterrupted analysis even on partial LLM failures</li>
+            <li>Delivers actionable business insights and interactive visualizations — cutting manual analysis time by 90%</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">LangGraph</span><span class="proj-tag">Llama 3</span><span class="proj-tag">Python</span><span class="proj-tag">Pandas</span><span class="proj-tag">Numpy</span><span class="proj-tag">Matplotlib</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/AIDA" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://aida-data-analyzer.streamlit.app/" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- InsuCompass -->
+      <div class="project-card reveal" data-tags="agentic rag">
+        <div class="proj-img">
+          <div class="proj-img-inner" style="background:linear-gradient(135deg,rgba(16,185,129,.25),rgba(99,102,241,.2));">🏥</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge" style="background:linear-gradient(135deg,var(--success),var(--primary));">Agentic RAG</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">InsuCompass</div>
+          <p class="proj-desc">Agentic RAG health insurance advisor with a self-learning Search Agent that autonomously retrieves, verifies, and ingests new knowledge for multi-turn personalized plan guidance.</p>
+          <ul class="proj-bullets">
+            <li>Self-learning Search Agent autonomously retrieves, verifies, and ingests new knowledge from CMS.gov and VA.gov, keeping the knowledge base current without manual updates</li>
+            <li>Orchestrated a multi-agent workflow using LangGraph delivering context-aware insurance advice with multi-turn, personalized plan guidance</li>
+            <li>Leverages Groq API (Llama 3), Google Gemini Pro and Flash models, integrated with real-time web search for up-to-date policy information</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">LangGraph</span><span class="proj-tag">Streamlit</span><span class="proj-tag">Groq</span><span class="proj-tag">Gemini</span><span class="proj-tag">ChromaDB</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/InsuCompass" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LegalBee -->
+      <div class="project-card reveal" data-tags="rag agentic">
+        <div class="proj-img">
+          <div class="proj-img-inner" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(236,72,153,.2));">⚖️</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge" style="background:linear-gradient(135deg,#f59e0b,#ec4899);">AI · Legal Tech</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">LegalBee</div>
+          <p class="proj-desc">AI legal-document assistant powered by Llama 3.3 70B via Groq + Genkit — explains legal concepts in plain English and parses PDFs/DOCX to extract and summarize key clauses.</p>
+          <ul class="proj-bullets">
+            <li>Parses PDFs and DOCX files to extract and summarize key lease and contract clauses using Llama 3.3 70B (Groq + Genkit) with schema-validated outputs</li>
+            <li>Explains complex legal concepts in plain English with a spam/relevance pre-filter for focused, accurate responses</li>
+            <li>Serverless Next.js + TypeScript frontend with Firebase backend enabling real-time document streaming</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Next.js</span><span class="proj-tag">TypeScript</span><span class="proj-tag">Genkit</span><span class="proj-tag">Groq</span><span class="proj-tag">Llama 3.3</span><span class="proj-tag">Firebase</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/LegalBee" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://legalbee.netlify.app/" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FlakeShield -->
+      <div class="project-card reveal" data-tags="devtools agentic cloud">
+        <div class="proj-img">
+          <div class="proj-img-inner">🛡️</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge">DevTools · AI</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">FlakeShield</div>
+          <p class="proj-desc">Write-time flaky test prevention platform — catches flakiness before tests even run using AST static analysis and AI-generated fix patches.</p>
+          <ul class="proj-bullets">
+            <li>Go + Tree-sitter AST engine detects all 4 root causes of flakiness at write-time: async races, shared state, hardcoded timeouts, ordering bugs</li>
+            <li>GitHub App webhook → AWS Lambda triggers analysis on every PR; LangChain + Claude API generates fix patches</li>
+            <li>PyTorch binary classifier trained on 10K+ open-source tests predicts flakiness with explainability output</li>
+            <li>Real-time D3.js heatmap with WebSocket updates — risk scores, trends, team analytics</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Go</span><span class="proj-tag">Python</span><span class="proj-tag">Tree-sitter</span><span class="proj-tag">Next.js</span><span class="proj-tag">PyTorch</span><span class="proj-tag">AWS</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/FlakeShield" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://flakeshield.vercel.app/" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ChaosGuard -->
+      <div class="project-card reveal" data-tags="devtools cloud">
+        <div class="proj-img">
+          <div class="proj-img-inner" style="background:linear-gradient(135deg,rgba(236,72,153,.3),rgba(245,158,11,.2));">⚡</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge" style="background:linear-gradient(135deg,var(--secondary),var(--accent));">Cloud · DevTools</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">ChaosGuard</div>
+          <p class="proj-desc">Production-grade chaos engineering toolkit — HTTP reverse proxy with policy-driven fault injection, Redis pub/sub kill switch, and real-time blast-radius control.</p>
+          <ul class="proj-bullets">
+            <li>HTTP reverse proxy in Go injecting configurable latency, error rates, and network partitions via policy engine</li>
+            <li>Redis pub/sub kill switch halts all active chaos experiments across distributed nodes in &lt;100ms</li>
+            <li>JWT/RBAC auth, audit logging, and blast-radius enforcement prevent accidental production harm</li>
+            <li>React dashboard with live experiment metrics, history, and one-click rollback</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Go</span><span class="proj-tag">Redis</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Docker</span><span class="proj-tag">eBPF</span><span class="proj-tag">React</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/ChaosGuard" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://chaosguard-production.up.railway.app/dashboard/" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CodeCritic AI -->
+      <div class="project-card reveal" data-tags="rag devtools agentic">
+        <div class="proj-img">
+          <div class="proj-img-inner" style="background:linear-gradient(135deg,rgba(16,185,129,.25),rgba(99,102,241,.2));">🤖</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge" style="background:linear-gradient(135deg,var(--success),var(--primary));">AI · DevTools · RAG</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">CodeCritic AI</div>
+          <p class="proj-desc">AI-powered codebase assistant combining RAG, AST analysis, Graph RAG, and agentic workflows — 85% reduction in manual review effort, 95%+ defect-detection accuracy.</p>
+          <ul class="proj-bullets">
+            <li>5-stage retrieval pipeline: vector search (Chroma) → LLM file selection → ensemble → Graph RAG context expansion → cross-encoder reranking (ms-marco-MiniLM)</li>
+            <li>LangGraph agentic workflow with 6 tools (search_codebase, read_file, find_callers, find_callees, find_call_chain) enabling multi-hop reasoning over large codebases</li>
+            <li>Tree-sitter AST structural chunking; Merkle tree incremental indexing re-processes only changed files</li>
+            <li>Multi-model: Gemini Pro + Groq (LLaMA 3.3) with adaptive rate limiting; Streamlit + FastAPI + Next.js frontend</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">LangGraph</span><span class="proj-tag">Tree-sitter</span><span class="proj-tag">Chroma</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Gemini</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/CodeCritic-AI" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://codecritic-ai.netlify.app/" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FinAgent -->
+      <div class="project-card reveal" data-tags="agentic rag">
+        <div class="proj-img">
+          <div class="proj-img-inner" style="background:linear-gradient(135deg,rgba(16,185,129,.3),rgba(99,102,241,.2));">📈</div>
+          <div class="proj-img-overlay"></div>
+          <span class="proj-cat-badge" style="background:linear-gradient(135deg,var(--success),var(--primary));">AI · Finance</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">FinAgent</div>
+          <p class="proj-desc">Multi-agent financial analysis pipeline using LangChain and Gemini API — automates stock analysis, earnings sentiment scoring, and investment report generation.</p>
+          <ul class="proj-bullets">
+            <li>Orchestrated a multi-agent pipeline using LangChain and Gemini API to automate stock analysis, earnings sentiment scoring, and investment report generation — reducing manual research effort by 85%</li>
+            <li>FastAPI gateway with modular REST API endpoints serving 50+ concurrent users with 95% error recovery rate</li>
+            <li>Containerized using Docker and automated CI/CD via GitHub Actions for reliable deployment</li>
+          </ul>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span><span class="proj-tag">FastAPI</span><span class="proj-tag">LangChain</span><span class="proj-tag">Gemini API</span><span class="proj-tag">Docker</span><span class="proj-tag">GitHub Actions</span>
+          </div>
+          <div class="proj-links-row">
+            <a href="https://github.com/PranavNagothu/FinAgent" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://huggingface.co/spaces/PranavNagothu/FinAgent" target="_blank" class="proj-link-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <span class="section-badge">✦ Skills</span>
+      <h2 class="section-title">Tech <span class="gradient-text">Stack</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Production-ready AI/ML skills across LLMs, cloud, and data</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Languages &amp; Frameworks</div>
+        <div class="skill-items">
+          <div class="skill-item"><div class="skill-dot"></div>Python / SQL</div>
+          <div class="skill-item"><div class="skill-dot"></div>PyTorch / Scikit-Learn</div>
+          <div class="skill-item"><div class="skill-dot"></div>FastAPI / React</div>
+          <div class="skill-item"><div class="skill-dot"></div>LangChain / LangGraph</div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">GenAI &amp; ML</div>
+        <div class="skill-items">
+          <div class="skill-item"><div class="skill-dot"></div>RAG &amp; Agentic Systems</div>
+          <div class="skill-item"><div class="skill-dot"></div>Prompt Engineering</div>
+          <div class="skill-item"><div class="skill-dot"></div>Information Retrieval / NLP</div>
+          <div class="skill-item"><div class="skill-dot"></div>Predictive Modeling</div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-name">Cloud &amp; Data</div>
+        <div class="skill-items">
+          <div class="skill-item"><div class="skill-dot"></div>AWS (EC2, Bedrock, Lambda)</div>
+          <div class="skill-item"><div class="skill-dot"></div>Azure (AI Foundry, ML, OpenAI)</div>
+          <div class="skill-item"><div class="skill-dot"></div>Databricks / ETL</div>
+          <div class="skill-item"><div class="skill-dot"></div>Google Cloud / Vertex AI</div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-name">Tools &amp; Platforms</div>
+        <div class="skill-items">
+          <div class="skill-item"><div class="skill-dot"></div>Docker / Git / CI/CD</div>
+          <div class="skill-item"><div class="skill-dot"></div>Terraform / Vertex AI ADK</div>
+          <div class="skill-item"><div class="skill-dot"></div>MLflow / Model Monitoring</div>
+          <div class="skill-item"><div class="skill-dot"></div>Tableau / Excel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+      <span class="section-badge">✦ Contact</span>
+      <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Open to AI/ML and SDE full-time roles. Let's talk.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <h3 style="font-size:1.4rem;font-weight:700;margin-bottom:1rem;">Let's build something great together</h3>
+        <p style="color:var(--muted);margin:1rem 0 1.5rem;line-height:1.8;">Whether you have a role to discuss, a project idea, or just want to connect — my inbox is always open.</p>
+        <div class="contact-links">
+          <a href="mailto:pranavchowdary19@gmail.com" class="contact-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+            pranavchowdary19@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/pranavnagothu" target="_blank" class="contact-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/pranavnagothu
+          </a>
+          <a href="https://github.com/PranavNagothu" target="_blank" class="contact-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            github.com/PranavNagothu
+          </a>
+        </div>
+      </div>
+      <div class="contact-form reveal-right">
+        <form id="contact-form" onsubmit="handleSubmit(event)" style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="form-group" style="margin:0;"><label>Name</label><input type="text" id="name" name="name" placeholder="Your name" required/></div>
+          <div class="form-group" style="margin:0;"><label>Email</label><input type="email" id="email" name="email" placeholder="your@email.com" required/></div>
+          <div class="form-group" style="margin:0;"><label>Message</label><textarea id="message" name="message" placeholder="What's on your mind?" required></textarea></div>
+          <button type="submit" class="btn-primary" style="width:100%;">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by <span>Pranav Chowdary</span> · 2026</p>
+</footer>
+
+<div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+// ── CANVAS FLOATING SHAPES ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+const shapeColors=['#6366f1','#ec4899','#f59e0b','#10b981','#3b82f6','#a855f7','#f43f5e','#14b8a6'];
+function randomShape(){
+  const types=['triangle','arc','line','circle','diamond'];
+  return{type:types[Math.floor(Math.random()*types.length)],x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,size:Math.random()*12+4,color:shapeColors[Math.floor(Math.random()*shapeColors.length)],opacity:Math.random()*.18+.03,speed:{x:(Math.random()-.5)*.3,y:(Math.random()-.5)*.3},rotation:Math.random()*Math.PI*2,rotSpeed:(Math.random()-.5)*.01};
+}
+const shapes=[];
+for(let i=0;i<28;i++) shapes.push(randomShape());
+function drawShape(s){
+  ctx.save();ctx.globalAlpha=s.opacity;ctx.strokeStyle=s.color;ctx.lineWidth=1.5;
+  ctx.translate(s.x,s.y);ctx.rotate(s.rotation);
+  if(s.type==='triangle'){ctx.beginPath();ctx.moveTo(0,-s.size);ctx.lineTo(s.size*.866,s.size*.5);ctx.lineTo(-s.size*.866,s.size*.5);ctx.closePath();ctx.stroke();}
+  else if(s.type==='arc'){ctx.beginPath();ctx.arc(0,0,s.size,0,Math.PI);ctx.stroke();}
+  else if(s.type==='line'){ctx.beginPath();ctx.moveTo(0,-s.size);ctx.lineTo(0,s.size);ctx.stroke();}
+  else if(s.type==='diamond'){ctx.beginPath();ctx.moveTo(0,-s.size);ctx.lineTo(s.size*.6,0);ctx.lineTo(0,s.size);ctx.lineTo(-s.size*.6,0);ctx.closePath();ctx.stroke();}
+  else{ctx.beginPath();ctx.arc(0,0,s.size*.4,0,Math.PI*2);ctx.stroke();}
+  ctx.restore();
+}
+function animateCanvas(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  shapes.forEach(s=>{s.x+=s.speed.x;s.y+=s.speed.y;s.rotation+=s.rotSpeed;
+    if(s.x<-50)s.x=canvas.width+50;if(s.x>canvas.width+50)s.x=-50;
+    if(s.y<-50)s.y=canvas.height+50;if(s.y>canvas.height+50)s.y=-50;
+    drawShape(s);});
+  requestAnimationFrame(animateCanvas);
+}
+animateCanvas();
+
+// ── TYPEWRITER ──
+const roles=['AI/ML Engineer','LLM Application Developer','GenAI Systems Builder','Agentic Pipeline Engineer','Graduate Research Assistant'];
+let ri=0,ci=0,del=false,typedEl=document.getElementById('typed-text');
+function type(){
+  const r=roles[ri];
+  if(!del){typedEl.textContent=r.slice(0,++ci);if(ci===r.length){del=true;setTimeout(type,1800);return;}}
+  else{typedEl.textContent=r.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length;}}
+  setTimeout(type,del?60:110);
+}
+setTimeout(type,600);
+
+// ── SCROLL REVEAL ──
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach((e)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),e.target.dataset.delay||0);});
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach((el,i)=>{el.dataset.delay=(i%5)*80;revealObs.observe(el);});
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el){
+  const target=+el.dataset.target,suffix='+',dur=1400,step=16,inc=target/(dur/step);let cur=0;
+  const t=setInterval(()=>{cur=Math.min(cur+inc,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},step);
+}
+const counterObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.counted){e.target.dataset.counted=1;animateCounter(e.target);}});},{threshold:0.5});
+document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
+
+// ── NAV + PROGRESS + BACK TO TOP ──
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+  const doc=document.documentElement;
+  document.getElementById('progress-bar').style.width=((window.scrollY/(doc.scrollHeight-doc.clientHeight))*100)+'%';
+  document.getElementById('back-top').classList.toggle('visible',window.scrollY>400);
+  let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id;});
+  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+
+// ── PROJECT FILTER ──
+document.querySelectorAll('.filter-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card=>{
+      card.style.display=(filter==='all'||card.dataset.tags.includes(filter))?'flex':'none';
+    });
+  });
+});
+
+// ── FORM SUBMIT ──
+function handleSubmit(e){
+  e.preventDefault();
+  const name=document.getElementById('name').value;
+  const email=document.getElementById('email').value;
+  const message=document.getElementById('message').value;
+  const mailtoLink=`mailto:pranavchowdary19@gmail.com?subject=Portfolio Contact from ${name}&body=From: ${email}\n\n${message}`;
+  window.location.href=mailtoLink;
+}
+</script>
+</body>
 </html>
